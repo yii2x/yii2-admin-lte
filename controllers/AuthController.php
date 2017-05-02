@@ -14,12 +14,6 @@ use yii\web\Controller;
 class AuthController extends Controller
 {
     
-    public function init()
-    {
-        Yii::setAlias("@yii2-user", __DIR__ . '/../');
-    }
-    
-    
     /**
      * @inheritdoc
      */
