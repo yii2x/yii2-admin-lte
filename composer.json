@@ -1,0 +1,21 @@
+{
+    "name": "yii2x/yii2-admin-lte",
+    "description": "YII2 Admin LTE",
+    "type": "library",
+    "keywords": ["yii2","extension","library","admin","ui"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Yuriy Basov",
+            "email": "basowy@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "\\yii2x\\ui\\": ""
+        }
+    }
+}
