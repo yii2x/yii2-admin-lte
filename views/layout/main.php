@@ -4,6 +4,7 @@
  * @since 1.0.0
  */
 
+use Yii;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
@@ -48,25 +49,23 @@ use yii\widgets\Breadcrumbs;
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
           </a>
-
-        <div class="navbar-header"><span class="navbar-brand" href="#"><?= \app\widgets\adminlte\account\AccountName::widget(); ?> </span></div>
                   
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <?= \app\widgets\adminlte\user\profile\UserProfileImage::widget(["options"=>["class"=>"user-image", "alt"=>"User Image"]]); ?> 
-                      <span class="hidden-xs"><?= \app\widgets\adminlte\user\profile\UserProfileName::widget(); ?></span>
+                      
+                      <span class="hidden-xs"><?= Yii::$app->user->identity->username; ?></span>
                     </a>                  
      
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <?= \app\widgets\adminlte\user\profile\UserProfileImage::widget(["options"=>["class"=>"img-circle", "alt"=>"User Image"]]); ?> 
+                    
                     <p>
-                        <?= \app\widgets\adminlte\user\profile\UserProfileName::widget(); ?> 
-                        <br><?= \app\widgets\adminlte\user\profile\UserProfileTitle::widget(); ?> 
+                        <?= Yii::$app->user->identity->username; ?>
+                        <br>
                     </p>
                   </li>
 
@@ -74,10 +73,10 @@ use yii\widgets\Breadcrumbs;
                   <li class="user-footer">
                     <div class="pull-left">
                         
-                        <?= Html::a('Profile', ['/userprofile/view', "id" => \Yii::$app->user->identity->id], ['class' => 'btn btn-default btn-flat']) ?>
+                        <?= Html::a('Profile', ['/auth/view'], ['class' => 'btn btn-default btn-flat']) ?>
                     </div>
                     <div class="pull-right">
-                      <?= \app\widgets\adminlte\LogoutButton::widget(); ?> 
+                      <?= Html::a('Sign Out', ['/signout'], [ 'class' => 'btn btn-default btn-flat']);; ?> 
                     </div>
                   </li>
                 </ul>
@@ -92,14 +91,7 @@ use yii\widgets\Breadcrumbs;
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- sidebar menu: : style can be found in sidebar.less -->
-            <?= \app\components\access\AdminMenu::widget(
-                [
-                    'options' => [
-                        "class"=>"sidebar-menu"
-                    ],
-                    'items' => \app\components\access\UserAdminMenuItems::getItems(9)
-                ]
-            ); ?>          
+       
                        
           
         </section>

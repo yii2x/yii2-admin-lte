@@ -14,6 +14,15 @@ use yii\web\Controller;
 class AuthController extends Controller
 {
     
+    
+    
+    public function beforeAction($action){
+        if(!empty($action->layout)){
+            $this->layout = $action->layout;
+        }
+        return parent::beforeAction($action);
+    }
+    
     /**
      * @inheritdoc
      */
@@ -23,7 +32,7 @@ class AuthController extends Controller
             
             'signin' => [
                 'class'     => '\yii2x\user\actions\SigninAction',
-                'layout'    => '@vendor/yii2x/yii2-adminlte/views/layout/signin',
+                'layout'    => '@vendor/yii2x/yii2-admin-lte/views/layout/signin',
                 'view'      => '@vendor/yii2x/yii2-user/views/auth/signin'
             ],  
             
@@ -33,31 +42,37 @@ class AuthController extends Controller
         
             'signup' => [
                 'class' => '\yii2x\user\actions\SignupAction',
+                'layout'    => '@vendor/yii2x/yii2-admin-lte/views/layout/signin',
                 'view' => '@vendor/yii2x/yii2-user/views/auth/signup'
             ],              
             
             'registration' => [
                 'class' => '\yii2x\user\actions\RegistrationAction',
+                'layout'    => '@vendor/yii2x/yii2-admin-lte/views/layout/signin',
                 'view' => '@vendor/yii2x/yii2-user/views/auth/registration'
             ],   
 
             'passwordrequest' => [
                 'class' => '\yii2x\user\actions\PasswordRequestAction',
+                'layout'    => '@vendor/yii2x/yii2-admin-lte/views/layout/signin',
                 'view' => '@vendor/yii2x/yii2-user/views/auth/password_request'
             ],   
             
             'passwordreset' => [
                 'class' => '\yii2x\user\actions\PasswordResetAction',
+                'layout'    => '@vendor/yii2x/yii2-admin-lte/views/layout/signin',
                 'view' => '@vendor/yii2x/yii2-user/views/auth/password_reset'
             ],   
 
             'usernamerequest' => [
                 'class' => '\yii2x\user\actions\UsernameRequestAction',
+                'layout'    => '@vendor/yii2x/yii2-admin-lte/views/layout/signin',
                 'view' => '@vendor/yii2x/yii2-user/views/auth/username_request'
             ], 
           
             'usernameview' => [
                 'class' => '\yii2x\user\actions\UsernameViewAction',
+                'layout'    => '@vendor/yii2x/yii2-admin-lte/views/layout/signin',
                 'view' => '@vendor/yii2x/yii2-user/views/auth/username_view'
             ],             
             
