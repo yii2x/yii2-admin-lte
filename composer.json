@@ -11,7 +11,12 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "~2.0.0"
+        "yiisoft/yii2": "~2.0.0",
+        "bower-asset/admin-lte": "*",
+        "bower-asset/font-awesome": "*",
+        "bower-asset/ionicons": "*",
+        "bower-asset/raphael": "*",
+        "bower-asset/moment": "*"        
     },
     "autoload": {
         "psr-4": {
