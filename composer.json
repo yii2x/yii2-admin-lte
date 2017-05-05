@@ -18,6 +18,12 @@
         "bower-asset/raphael": "*",
         "bower-asset/moment": "*"        
     },
+    "repositories":[
+        {
+            "type": "git",
+            "url": "https://github.com/yii2x/yii2-admin-lte"
+        }
+    ],       
     "autoload": {
         "psr-4": {
             "yii2x\\ui\\adminlte\\": ""
