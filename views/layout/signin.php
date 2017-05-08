@@ -10,7 +10,9 @@ use yii\helpers\Html;
 
 \yii2x\ui\adminlte\assets\AdminLTEAsset::register($this);
 
+use app\assets\AppAsset;
 
+AppAsset::register($this);
 
 ?>
 <?php $this->beginPage() ?>
@@ -60,6 +62,7 @@ use yii\helpers\Html;
   </div>
   <!-- /.login-box -->
  
+  <?= yii2x\ui\adminlte\widgets\PaceWidget::widget(); ?>
 
 <?php $this->endBody() ?>
 </body>

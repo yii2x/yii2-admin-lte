@@ -8,8 +8,19 @@ use Yii;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
-\yii2x\ui\adminlte\assets\AdminLTEAsset::register($this);
 
+\yii2x\ui\adminlte\assets\AdminLTEAsset::register($this);
+\yii2x\ui\adminlte\assets\AdminLTEResourcesAsset::register($this);
+//if (YII_ENV_DEV) {
+//    \yii2x\ui\ext\assets\ExtJsAdminDevAsset::register($this);
+//}
+//else{
+//    \yii2x\ui\ext\assets\ExtJsAdminAsset::register($this);
+//}
+\yii2x\ui\ext\assets\ExtJsAdminAsset::register($this);
+use app\assets\AppAsset;
+
+AppAsset::register($this);
 
 ?>
 <?php $this->beginPage() ?>
@@ -31,7 +42,7 @@ use yii\widgets\Breadcrumbs;
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition skin-black-light sidebar-mini">
+<body class="hold-transition fixed skin-blue sidebar-mini">
 <?php $this->beginBody() ?>
     <div class="wrapper">
 
@@ -55,14 +66,15 @@ use yii\widgets\Breadcrumbs;
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      
+                      <?= \yii2x\ui\adminlte\widgets\user\profile\UserProfileImage::widget(["options"=>["class"=>"user-image", "alt"=>"User Image"]]); ?> 
                       <span class="hidden-xs"><?= Yii::$app->user->identity->username; ?></span>
                     </a>                  
      
                 <ul class="dropdown-menu">
                   <!-- User image -->
+                  
                   <li class="user-header">
-                    
+                    <?= \yii2x\ui\adminlte\widgets\user\profile\UserProfileImage::widget(["options"=>["class"=>"img-circle", "alt"=>"User Image"]]); ?> 
                     <p>
                         <?= Yii::$app->user->identity->username; ?>
                         <br>
@@ -91,8 +103,15 @@ use yii\widgets\Breadcrumbs;
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- sidebar menu: : style can be found in sidebar.less -->
-       
-                       
+            <?= \yii2x\ui\menu\AdminMenuWidget::widget(
+                [
+                    'alias' => 'ADMIN_MENU',
+                    'menuTitle' => 'MAIN NAVIGATION',
+                    'options' => [
+                        "class"=>"sidebar-menu"
+                    ]
+                ]
+            ); ?>                         
           
         </section>
         <!-- /.sidebar -->
@@ -127,6 +146,26 @@ use yii\widgets\Breadcrumbs;
                         <?= \Yii::$app->session->getFlash('failure'); ?>
                     </div>
                 <?php endif; ?> 
+                <div class="row">
+                    <div class="col-sm-4">
+                    <?= \yii2x\ui\ext\Component::widget([
+                        "id" => 'menu-grid',
+                        "params" => [
+                            "xtype" => "menugridpanel"                            
+                        ]
+                    ]); ?>
+                    </div>
+                    <div class="col-sm-8">
+                    <?= \yii2x\ui\ext\Component::widget([
+                        "id" => 'menu-tree-grid',
+                        "config" => '{"xtype":"treepanel","minHeight":300,"minWidth":300,"header":false,"title":"Menus","columnLines":true,"hideHeaders":true,"rowLines":true,"store":"MenuTreeStore","useArrows":true,"columns":[{"xtype":"treecolumn","dataIndex":"name","text":"Nodes","flex":1,"editor":{"xtype":"textfield"}},{"xtype":"gridcolumn","dataIndex":"name","text":"MyColumn4","flex":1}],"plugins":[{"ptype":"cellediting","clicksToEdit":1}],"renderTo":"menu-tree-grid"}',
+                        "params" => [
+                            "xtype" => "menutreegrid",                            
+                        ]
+                    ]); ?>
+                    </div>
+                    
+                </div>                
                 <?= $content ?>
 
                 <!-- /.row (main row) -->                
@@ -150,7 +189,7 @@ use yii\widgets\Breadcrumbs;
     </div>
     <!-- ./wrapper -->
 
-
+    <?= yii2x\ui\adminlte\widgets\PaceWidget::widget(); ?>
 <?php $this->endBody() ?>
 </body>
 </html>

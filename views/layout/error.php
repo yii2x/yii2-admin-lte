@@ -63,6 +63,7 @@ use yii\helpers\Html;
   </div>
   <!-- /.login-box -->
  
+  <?= yii2x\ui\adminlte\widgets\PaceWidget::widget(); ?>
 
 <?php $this->endBody() ?>
 </body>
