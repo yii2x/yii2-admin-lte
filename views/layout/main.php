@@ -103,7 +103,7 @@ AppAsset::register($this);
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- sidebar menu: : style can be found in sidebar.less -->
-            <?= \yii2x\ui\menu\AdminMenuWidget::widget(
+            <?= \yii2x\ui\menu\MenuWidget::widget(
                 [
                     'alias' => 'ADMIN_MENU',
                     'menuTitle' => 'MAIN NAVIGATION',
@@ -164,7 +164,6 @@ AppAsset::register($this);
                         ]
                     ]); ?>
                     </div>
-                    
                 </div>                
                 <?= $content ?>
 

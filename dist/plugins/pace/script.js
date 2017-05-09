@@ -12,6 +12,6 @@ $(document).on('click','button[type=submit]', function(e) {
 });
 $('a').on('click', function(e) { 
     if($(this).attr('href').length < 5){
-        return false;
+        //return false;
     }
 });
