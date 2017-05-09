@@ -15,20 +15,15 @@ use yii\web\AssetBundle;
  */
 class AdminLTEAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/admin-lte/dist/';
+    public $sourcePath = '@vendor/yii2x/yii2-admin-lte/dist/';
     public $css = [
-        'css/AdminLTE.css',
-        'css/skins/_all-skins.min.css',
+       
         ];
     public $js =  [
-        'js/app.js',
+        'script.js',
        // 'js/demo.js'        
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-        'yii\bootstrap\BootstrapPluginAsset',
-        'yii2x\ui\adminlte\assets\FontAwesomeAsset',
-        'yii2x\ui\adminlte\assets\IoniconsAsset',
+        'yii2x\ui\adminlte\assets\AdminLTEBaseAsset',
     ];
 }

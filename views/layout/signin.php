@@ -62,7 +62,7 @@ AppAsset::register($this);
   </div>
   <!-- /.login-box -->
  
-  <?= yii2x\ui\adminlte\widgets\PaceWidget::widget(); ?>
+
 
 <?php $this->endBody() ?>
 </body>

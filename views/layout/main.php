@@ -11,12 +11,6 @@ use yii\widgets\Breadcrumbs;
 
 \yii2x\ui\adminlte\assets\AdminLTEAsset::register($this);
 \yii2x\ui\adminlte\assets\AdminLTEResourcesAsset::register($this);
-//if (YII_ENV_DEV) {
-//    \yii2x\ui\ext\assets\ExtJsAdminDevAsset::register($this);
-//}
-//else{
-//    \yii2x\ui\ext\assets\ExtJsAdminAsset::register($this);
-//}
 \yii2x\ui\ext\assets\ExtJsAdminAsset::register($this);
 use app\assets\AppAsset;
 
@@ -120,18 +114,22 @@ AppAsset::register($this);
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-            <h1> <?= Html::encode($this->title) ?></h1>
+        <section class="content-header container-fluid">
+
+                <h1> <?= Html::encode($this->title) ?></h1>
                 <?= Breadcrumbs::widget([
+                    'tag' => 'ol',
+                    'options' => [
+                        'class' => 'breadcrumb'
+                    ],
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ]) ?>                 
-            </div>           
+         
         </section>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
+        
+        <section id="alert-placeholder" class="container-fluid">
+
                 <?php if (\Yii::$app->session->hasFlash('success')): ?>
                     <div class="alert alert-success alert-dismissable"> 
                         <button aria-hidden="true" data-dismiss="alert" class="close" type="button">x</button>
@@ -146,29 +144,12 @@ AppAsset::register($this);
                         <?= \Yii::$app->session->getFlash('failure'); ?>
                     </div>
                 <?php endif; ?> 
-                <div class="row">
-                    <div class="col-sm-4">
-                    <?= \yii2x\ui\ext\Component::widget([
-                        "id" => 'menu-grid',
-                        "params" => [
-                            "xtype" => "menugridpanel"                            
-                        ]
-                    ]); ?>
-                    </div>
-                    <div class="col-sm-8">
-                    <?= \yii2x\ui\ext\Component::widget([
-                        "id" => 'menu-tree-grid',
-                        "config" => '{"xtype":"treepanel","minHeight":300,"minWidth":300,"header":false,"title":"Menus","columnLines":true,"hideHeaders":true,"rowLines":true,"store":"MenuTreeStore","useArrows":true,"columns":[{"xtype":"treecolumn","dataIndex":"name","text":"Nodes","flex":1,"editor":{"xtype":"textfield"}},{"xtype":"gridcolumn","dataIndex":"name","text":"MyColumn4","flex":1}],"plugins":[{"ptype":"cellediting","clicksToEdit":1}],"renderTo":"menu-tree-grid"}',
-                        "params" => [
-                            "xtype" => "menutreegrid",                            
-                        ]
-                    ]); ?>
-                    </div>
-                </div>                
+        </section>        
+        
+        <!-- Main content -->
+        <section class="content container-fluid">         
                 <?= $content ?>
 
-                <!-- /.row (main row) -->                
-            </div>
         </section>
         <!-- /.content -->
       </div>
@@ -188,7 +169,7 @@ AppAsset::register($this);
     </div>
     <!-- ./wrapper -->
 
-    <?= yii2x\ui\adminlte\widgets\PaceWidget::widget(); ?>
+
 <?php $this->endBody() ?>
 </body>
 </html>
