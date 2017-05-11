@@ -7,7 +7,9 @@
 use Yii;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
-
+use yii2x\ui\adminlte\widgets\alert\FlashAlertWidget;
+use yii2x\ui\adminlte\widgets\header\HeaderWidget;
+use yii2x\ui\adminlte\widgets\footer\FooterWidget;
 
 \yii2x\ui\adminlte\assets\AdminLTEAsset::register($this);
 \yii2x\ui\adminlte\assets\AdminLTEResourcesAsset::register($this);
@@ -40,58 +42,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
     <div class="wrapper">
 
-      <header class="main-header">
-        <!-- Logo -->
-        <a href="/" class="logo">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b><i class ="fa fa-2x fa-globe"></i></b></span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b><?= Html::encode(\Yii::$app->name) ?></b></span>
-        </a>
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top">
-          <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-          </a>
-                  
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-              <!-- User Account: style can be found in dropdown.less -->
-              <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <?= \yii2x\ui\adminlte\widgets\user\profile\UserProfileImage::widget(["options"=>["class"=>"user-image", "alt"=>"User Image"]]); ?> 
-                      <span class="hidden-xs"><?= Yii::$app->user->identity->username; ?></span>
-                    </a>                  
-     
-                <ul class="dropdown-menu">
-                  <!-- User image -->
-                  
-                  <li class="user-header">
-                    <?= \yii2x\ui\adminlte\widgets\user\profile\UserProfileImage::widget(["options"=>["class"=>"img-circle", "alt"=>"User Image"]]); ?> 
-                    <p>
-                        <?= Yii::$app->user->identity->username; ?>
-                        <br>
-                    </p>
-                  </li>
-
-                  <!-- Menu Footer-->
-                  <li class="user-footer">
-                    <div class="pull-left">
-                        
-                        <?= Html::a('Profile', ['/auth/view'], ['class' => 'btn btn-default btn-flat']) ?>
-                    </div>
-                    <div class="pull-right">
-                      <?= Html::a('Sign Out', ['/signout'], [ 'class' => 'btn btn-default btn-flat']);; ?> 
-                    </div>
-                  </li>
-                </ul>
-              </li>
-
-            </ul>
-          </div>
-        </nav>
-      </header>
+        <?= HeaderWidget::widget(); ?>
       <!-- Left side column. contains the logo and sidebar -->
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
@@ -130,20 +81,8 @@ AppAsset::register($this);
         
         <section id="alert-placeholder" class="container-fluid">
 
-                <?php if (\Yii::$app->session->hasFlash('success')): ?>
-                    <div class="alert alert-success alert-dismissable"> 
-                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">x</button>
-                        <strong><span style="font-size:16px" class="glyphicon glyphicon-ok-circle"></span></strong>
-                        <?= \Yii::$app->session->getFlash('success'); ?>
-                    </div>
-                <?php endif; ?>   
-                <?php if (\Yii::$app->session->hasFlash('failure')): ?>
-                    <div class="alert alert-danger alert-dismissable"> 
-                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">x</button>
-                        <strong><span style="font-size:16px" class="glyphicon glyphicon-remove-circle"></span></strong>
-                        <?= \Yii::$app->session->getFlash('failure'); ?>
-                    </div>
-                <?php endif; ?> 
+            <?= FlashAlertWidget::widget();?>
+            
         </section>        
         
         <!-- Main content -->
@@ -154,13 +93,10 @@ AppAsset::register($this);
         <!-- /.content -->
       </div>
       <!-- /.content-wrapper -->
-      <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.8
-        </div>
-        <strong>Copyright &copy; 2017-<?= date('Y') ?> <a href="#"><?= Html::encode(\Yii::$app->name) ?></a>.</strong> All rights
-        reserved.
-      </footer>
+      
+      <?= FooterWidget::widget(); ?>
+      
+
 
       <!-- /.control-sidebar -->
       <!-- Add the sidebar's background. This div must be placed
