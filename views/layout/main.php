@@ -13,10 +13,12 @@ use yii2x\ui\adminlte\widgets\footer\FooterWidget;
 
 \yii2x\ui\adminlte\assets\AdminLTEAsset::register($this);
 \yii2x\ui\adminlte\assets\AdminLTEResourcesAsset::register($this);
-\yii2x\ui\ext\assets\ExtJsAdminAsset::register($this);
-use app\assets\AppAsset;
 
-AppAsset::register($this);
+\app\assets\AppAsset::register($this);
+
+
+
+//\yii2x\web\db\assets\DBAssetBundle::register(['view' => $this, 'alias' => 'GRAY_SCALE']);
 
 ?>
 <?php $this->beginPage() ?>
