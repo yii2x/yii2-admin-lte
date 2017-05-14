@@ -17,7 +17,8 @@ class AuthController extends Controller
     
     
     public function beforeAction($action){
-        if(!empty($action->layout)){
+        
+        if(!empty($action->layout) && empty(Yii::$app->request->uriPage)){
             $this->layout = $action->layout;
         }
         return parent::beforeAction($action);
